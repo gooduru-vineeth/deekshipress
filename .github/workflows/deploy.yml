@@ -42,3 +42,29 @@ jobs:
           security: loose
           local-dir: dist/
           server-dir: ./
+
+  deploy-in:
+    name: Build and deploy deekshipress.in
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Deploy over FTPS (FTP home is the site's public_html)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_IN_SERVER }}
+          username: ${{ secrets.FTP_IN_USERNAME }}
+          password: ${{ secrets.FTP_IN_PASSWORD }}
+          protocol: ftps
+          security: loose
+          local-dir: dist/
+          server-dir: ./
