@@ -39,56 +39,6 @@
   );
 }
 
-/* ---------- The notebook label ---------- */
-
-/* Rhythm spacer: the label itself isn't rule-height, so its row
-   is forced to a whole number of rules. */
-.hero-label-slot {
-  display: flex;
-  align-items: center;
-  min-height: calc(var(--rule-gap) * 3);
-}
-
-.hero-label {
-  display: inline-block;
-  background: var(--paper-warm);
-  border: 1.5px solid rgba(30, 43, 79, 0.35);
-  border-radius: 10px;
-  padding: 0.75rem 1.05rem 0.8rem;
-  box-shadow: 2px 3px 0 rgba(30, 43, 79, 0.08);
-  transform: rotate(-1.2deg);
-}
-
-.hero-label-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-  margin: 0;
-}
-
-.hero-label-row + .hero-label-row {
-  margin-top: 0.3rem;
-}
-
-.hero-label-key {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.66rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  min-width: 3.6rem;
-}
-
-.hero-label-value {
-  font-family: var(--font-hand);
-  font-size: 0.98rem;
-  line-height: 1.25;
-  color: var(--ink);
-  border-bottom: 1px dotted rgba(30, 43, 79, 0.4);
-  padding: 0 0.3rem 0.1rem 0;
-}
-
 /* ---------- Headline on the rules ---------- */
 
 .hero-title {

@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
-import { coverSrc, type Book } from '../data/books'
+import type { Book } from '../data/books'
+import CoverImage from './CoverImage'
 
 interface BookCardProps {
   book: Book
@@ -18,14 +19,7 @@ export default function BookCard({ book, index, onOpen }: BookCardProps) {
       onClick={(event) => onOpen(book, event.currentTarget)}
     >
       <span className="book-cover">
-        <img
-          className="cover-img"
-          src={coverSrc(book)}
-          alt=""
-          width={640}
-          height={905}
-          decoding="async"
-        />
+        <CoverImage book={book} className="cover-img" />
       </span>
       <span className="book-meta">
         <span className="book-chips">

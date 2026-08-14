@@ -45,16 +45,6 @@
   }
 }
 
-@keyframes seq-label {
-  from {
-    opacity: 0;
-    transform: rotate(-4.5deg) scale(0.94) translateY(6px);
-  }
-  to {
-    transform: rotate(-1.2deg) scale(1) translateY(0);
-  }
-}
-
 @keyframes seq-fan {
   from {
     opacity: 0;
@@ -77,10 +67,6 @@
 
 .hero::before {
   animation: seq-fade 0.65s ease-out 0.18s backwards;
-}
-
-.hero-label {
-  animation: seq-label 0.45s cubic-bezier(0.3, 0.7, 0.3, 1.25) 0.28s backwards;
 }
 
 .hero-title {
