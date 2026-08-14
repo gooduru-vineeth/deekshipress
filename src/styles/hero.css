@@ -1,0 +1,171 @@
+/* ------------------------------------------------------------
+   Hero: the first page of the exercise book.
+   Every text line-height equals --rule-gap and vertical spacing
+   uses multiples of it, so the type sits on the printed rules.
+   ------------------------------------------------------------ */
+
+/* Full-bleed: the rules are the paper's printing, so they run
+   the whole width; the writing stays left, at the margin. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  margin-top: calc(var(--rule-gap) * 0.5);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  padding: var(--rule-gap) var(--content-right) calc(var(--rule-gap) * 1.5)
+    var(--content-left);
+  max-width: calc(var(--max-w) + var(--content-left) + var(--content-right));
+}
+
+/* Ruled lines live on a layer of their own so the load
+   sequence can fade them in independently. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--rule-gap) - 1px),
+    var(--rule) calc(var(--rule-gap) - 1px),
+    var(--rule) var(--rule-gap)
+  );
+}
+
+/* ---------- The notebook label ---------- */
+
+/* Rhythm spacer: the label itself isn't rule-height, so its row
+   is forced to a whole number of rules. */
+.hero-label-slot {
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--rule-gap) * 3);
+}
+
+.hero-label {
+  display: inline-block;
+  background: var(--paper-warm);
+  border: 1.5px solid rgba(30, 43, 79, 0.35);
+  border-radius: 10px;
+  padding: 0.75rem 1.05rem 0.8rem;
+  box-shadow: 2px 3px 0 rgba(30, 43, 79, 0.08);
+  transform: rotate(-1.2deg);
+}
+
+.hero-label-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.hero-label-row + .hero-label-row {
+  margin-top: 0.3rem;
+}
+
+.hero-label-key {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  min-width: 3.6rem;
+}
+
+.hero-label-value {
+  font-family: var(--font-hand);
+  font-size: 0.98rem;
+  line-height: 1.25;
+  color: var(--ink);
+  border-bottom: 1px dotted rgba(30, 43, 79, 0.4);
+  padding: 0 0.3rem 0.1rem 0;
+}
+
+/* ---------- Headline on the rules ---------- */
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--rule-gap) * 0.78);
+  line-height: var(--rule-gap);
+  letter-spacing: 0.004em;
+  text-wrap: balance;
+}
+
+.hero-lede {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 1.08rem;
+  line-height: var(--rule-gap);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  min-height: var(--rule-gap);
+  margin-top: calc(var(--rule-gap) * 0.5);
+}
+
+/* ---------- Three covers, fanned like books on a desk ---------- */
+
+.hero-stack {
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-stack img {
+  width: clamp(7.5rem, 12vw, 10.5rem);
+  height: auto;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 20px 32px -18px rgba(30, 43, 79, 0.65);
+  transform: var(--fan);
+  transition: transform 0.3s cubic-bezier(0.3, 0.7, 0.3, 1.2);
+}
+
+/* Books answer to a touch — hover on desktop, press on touch */
+.hero-stack img:hover,
+.hero-stack img:active {
+  transform: var(--fan) translateY(-10px);
+}
+
+.hero-stack img:nth-child(1) {
+  --fan: rotate(-7deg) translate(16px, 4px);
+}
+
+.hero-stack img:nth-child(2) {
+  --fan: rotate(-0.5deg) translateY(-10px);
+  z-index: 1;
+}
+
+.hero-stack img:nth-child(3) {
+  --fan: rotate(6.5deg) translate(-16px, 6px);
+  z-index: 2;
+}
+
+/* ---------- Small screens: fan moves below the copy ---------- */
+
+@media (max-width: 860px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-stack {
+    justify-content: center;
+    margin-top: var(--rule-gap);
+  }
+
+  .hero-stack img {
+    width: clamp(6rem, 24vw, 8.5rem);
+  }
+}

@@ -1,17 +1,21 @@
-import { amazonUrl, coverSrc, type Book } from '../data/books'
+import type { CSSProperties } from 'react'
+import { coverSrc, type Book } from '../data/books'
 
 interface BookCardProps {
   book: Book
+  /** Position within its shelf, for the reveal stagger */
+  index: number
+  onOpen: (book: Book, opener: HTMLElement) => void
 }
 
-export default function BookCard({ book }: BookCardProps) {
+export default function BookCard({ book, index, onOpen }: BookCardProps) {
   return (
-    <a
+    <button
+      type="button"
       className="book-card"
-      href={amazonUrl(book)}
-      target="_blank"
-      rel="noopener noreferrer"
       data-band={book.band}
+      style={{ '--i': index } as CSSProperties}
+      onClick={(event) => onOpen(book, event.currentTarget)}
     >
       <span className="book-cover">
         <img
@@ -20,7 +24,7 @@ export default function BookCard({ book }: BookCardProps) {
           alt=""
           loading="lazy"
           width={640}
-          height={906}
+          height={905}
         />
       </span>
       <span className="book-meta">
@@ -28,15 +32,16 @@ export default function BookCard({ book }: BookCardProps) {
           <span className="chip chip-class">{book.classLabel}</span>
           <span className="chip">Ages {book.ages}</span>
         </span>
-        <span className="book-title">{book.title}</span>
+        <span className="book-title">{book.displayTitle}</span>
+        <span className="book-hook">{book.hook}</span>
         <span className="book-buy">
           <span className="book-price">₹{book.priceInr}</span>
           {book.kindleUnlimited && (
             <span className="ku-badge">Kindle Unlimited</span>
           )}
-          <span className="book-cta">Amazon ↗</span>
+          <span className="book-cta">Details →</span>
         </span>
       </span>
-    </a>
+    </button>
   )
 }

@@ -1,0 +1,237 @@
+/* ------------------------------------------------------------
+   Motion. One orchestrated moment — the page writes itself in —
+   then quiet scroll reveals. Loaded last so overrides win.
+
+   FOUC rule: opacity: 0 lives only inside keyframes (with
+   fill-mode: backwards), so killing an animation always leaves
+   content visible. Never animate transform on .page or body —
+   it would re-parent the fixed margin line.
+   ------------------------------------------------------------ */
+
+/* ---------- The page writes itself in ---------- */
+
+@keyframes seq-draw {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes seq-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes seq-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes seq-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes seq-wipe {
+  from {
+    clip-path: inset(-10% 102% -10% -2%);
+  }
+  to {
+    clip-path: inset(-10% -2% -10% -2%);
+  }
+}
+
+@keyframes seq-label {
+  from {
+    opacity: 0;
+    transform: rotate(-4.5deg) scale(0.94) translateY(6px);
+  }
+  to {
+    transform: rotate(-1.2deg) scale(1) translateY(0);
+  }
+}
+
+@keyframes seq-fan {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--fan);
+  }
+}
+
+.page::before {
+  transform-origin: top;
+  animation: seq-draw 0.5s cubic-bezier(0.3, 0.7, 0.3, 1) backwards;
+}
+
+.masthead {
+  animation: seq-drop 0.4s ease-out 0.08s backwards;
+}
+
+.hero::before {
+  animation: seq-fade 0.65s ease-out 0.18s backwards;
+}
+
+.hero-label {
+  animation: seq-label 0.45s cubic-bezier(0.3, 0.7, 0.3, 1.25) 0.28s backwards;
+}
+
+.hero-title {
+  animation: seq-wipe 0.55s cubic-bezier(0.6, 0.05, 0.25, 1) 0.4s backwards;
+}
+
+.hero-lede {
+  animation: seq-rise 0.45s ease-out 0.55s backwards;
+}
+
+.hero-actions {
+  animation: seq-rise 0.45s ease-out 0.66s backwards;
+}
+
+.hero-stack img:nth-child(1) {
+  animation: seq-fan 0.55s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.52s backwards;
+}
+
+.hero-stack img:nth-child(2) {
+  animation: seq-fan 0.55s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.6s backwards;
+}
+
+.hero-stack img:nth-child(3) {
+  animation: seq-fan 0.55s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.68s backwards;
+}
+
+/* ---------- Scroll reveals ---------- */
+
+/* useReveal adds .is-visible on first intersection; it adds it
+   immediately when IntersectionObserver is unavailable or
+   reduced motion is on. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cards rise in a small stagger as their shelf reveals */
+.shelf-section .book-card {
+  opacity: 0;
+  translate: 0 12px;
+  transition: opacity 0.45s ease-out, translate 0.45s ease-out;
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+.shelf-section.is-visible .book-card {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* The teacher's tick draws itself */
+.shelf-section::before {
+  width: 0;
+  transition: width 0.35s ease-out 0.15s;
+}
+
+.shelf-section.is-visible::before {
+  width: 30px;
+}
+
+/* The ladder rail draws down, dots pop, rungs stagger in */
+.ladder .rung::before {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s ease-out;
+}
+
+.ladder .rung-dot {
+  scale: 0;
+  transition: scale 0.35s cubic-bezier(0.3, 0.7, 0.3, 1.4);
+}
+
+.ladder .rung:nth-child(1) {
+  --d: 0.05s;
+}
+.ladder .rung:nth-child(2) {
+  --d: 0.17s;
+}
+.ladder .rung:nth-child(3) {
+  --d: 0.29s;
+}
+.ladder .rung:nth-child(4) {
+  --d: 0.41s;
+}
+
+.ladder .rung::before,
+.ladder .rung-dot {
+  transition-delay: var(--d, 0s);
+}
+
+.ladder.is-visible .rung::before {
+  transform: scaleY(1);
+}
+
+.ladder.is-visible .rung-dot {
+  scale: 1;
+}
+
+/* ---------- Reduced motion: everything, instantly ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal,
+  .shelf-section .book-card {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: 0 0 !important;
+  }
+
+  .ladder .rung::before {
+    transform: none !important;
+  }
+
+  .ladder .rung-dot {
+    scale: 1 !important;
+  }
+
+  .shelf-section::before {
+    width: 30px !important;
+  }
+
+  .btn:hover,
+  .book-card:hover .book-cover,
+  .book-card:active .book-cover,
+  .hero-stack img:hover,
+  .hero-stack img:active,
+  .rung-link:hover .rung-covers img,
+  .rung-link:active .rung-covers img {
+    transform: none;
+  }
+
+  .hero-stack img {
+    transform: var(--fan) !important;
+  }
+
+  .rung-link:hover {
+    translate: 0 0 !important;
+  }
+}

@@ -1,0 +1,77 @@
+/* ------------------------------------------------------------
+   Tokens: the material logic of the page.
+   Three writing instruments — printed ink (content), the
+   teacher's red pen (annotations, emphasis), a kid's pencil
+   (doodles) — on ruled exercise-book paper.
+   ------------------------------------------------------------ */
+
+/* Metric-tuned fallback so a late Baloo 2 swap doesn't reflow
+   the rule-aligned headline (values approximate Baloo 2). */
+@font-face {
+  font-family: 'Baloo 2 Fallback';
+  src: local('Trebuchet MS');
+  size-adjust: 103%;
+  ascent-override: 105%;
+  descent-override: 29%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --paper: #fbfaf4;
+  --paper-warm: #f6f2e3;
+  --ink: #1e2b4f;
+  --ink-soft: #52608a;
+  --margin-red: #e4574c;
+  --pencil: #8b8fa3;
+  --rule: #c9d9e8;
+
+  --band-foundations: #f2a93b;
+  --band-explorers: #3e8e63;
+  --band-middle: #35699a;
+  --band-seniors: #5b4bd3;
+
+  --font-display: 'Baloo 2', 'Baloo 2 Fallback', 'Trebuchet MS', system-ui,
+    sans-serif;
+  --font-body: 'Atkinson Hyperlegible', Verdana, system-ui, sans-serif;
+  --font-hand: 'Kalam', 'Comic Sans MS', cursive;
+
+  /* where the red margin line sits, and where content starts */
+  --margin-x: clamp(2.5rem, 7vw, 5.5rem);
+  --content-left: clamp(4rem, 11vw, 8.5rem);
+  --content-right: clamp(1.25rem, 5vw, 4rem);
+
+  /* spacing of the ruled lines; rule-aligned text matches it */
+  --rule-gap: round(clamp(2.75rem, 5.5vw, 3.5rem), 1px);
+  --max-w: 66rem;
+
+  --hairline: rgba(30, 43, 79, 0.16);
+  --shadow-lift: 0 22px 32px -16px rgba(30, 43, 79, 0.5);
+}
+
+/* Grade-band accents. Foundations is a light sunshine yellow,
+   so its contrast text switches to ink. */
+[data-band='foundations'] {
+  --band: var(--band-foundations);
+  --band-contrast: var(--ink);
+}
+[data-band='explorers'] {
+  --band: var(--band-explorers);
+  --band-contrast: #ffffff;
+}
+[data-band='middle'] {
+  --band: var(--band-middle);
+  --band-contrast: #ffffff;
+}
+[data-band='seniors'] {
+  --band: var(--band-seniors);
+  --band-contrast: #ffffff;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --margin-x: 1.1rem;
+    --content-left: 2.2rem;
+    --content-right: 1.1rem;
+    --rule-gap: 2.6rem;
+  }
+}

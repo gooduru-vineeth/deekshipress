@@ -1,41 +1,41 @@
+import { useRef } from 'react'
+import Authors from './components/Authors'
+import BookDialog from './components/BookDialog'
 import Bookshelf from './components/Bookshelf'
+import Faq from './components/Faq'
+import Footer from './components/Footer'
 import Hero from './components/Hero'
-import { AMAZON_SEARCH_URL, AUTHORS } from './data/books'
+import Ladder from './components/Ladder'
+import Masthead from './components/Masthead'
+import WhyAI from './components/WhyAI'
+import { dismissBook, openBook, useHashBook } from './hooks/useHashBook'
+import type { Book } from './data/books'
 
 export default function App() {
+  const book = useHashBook()
+  const openerRef = useRef<HTMLElement | null>(null)
+
+  const handleOpen = (nextBook: Book, opener: HTMLElement) => {
+    openerRef.current = opener
+    openBook(nextBook)
+  }
+
   return (
     <div className="page">
-      <header className="masthead">
-        <div>
-          <p className="wordmark">
-            Deekshi <span className="wordmark-press">Press</span>
-          </p>
-          <p className="masthead-tag">AI &amp; STEM books for curious Indian kids</p>
-        </div>
-        <a
-          className="masthead-link"
-          href={AMAZON_SEARCH_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Amazon.in store ↗
-        </a>
-      </header>
+      <a className="skip-link" href="#bookshelf">
+        Skip to the books
+      </a>
+      <Masthead />
       <main>
         <Hero />
-        <Bookshelf />
+        <WhyAI />
+        <Ladder />
+        <Bookshelf onOpen={handleOpen} />
+        <Authors />
+        <Faq />
       </main>
-      <footer className="footer">
-        <p>
-          Written by <strong>{AUTHORS}</strong>. Published under Deekshitha
-          Press.
-        </p>
-        <p>
-          All books are Kindle editions on Amazon.in — most are free to read
-          with Kindle Unlimited.
-        </p>
-        <p className="footer-copy">© 2026 Deekshi Press</p>
-      </footer>
+      <Footer />
+      <BookDialog book={book} onDismiss={dismissBook} openerRef={openerRef} />
     </div>
   )
 }

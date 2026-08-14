@@ -1,0 +1,345 @@
+/* ------------------------------------------------------------
+   Base: the notebook page itself, masthead, footer, and the
+   shared vocabulary (chapter heads, buttons, chips, doodles).
+   ------------------------------------------------------------ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--margin-red);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.6rem;
+  left: var(--content-left);
+  z-index: 100;
+  translate: 0 -400%;
+  transition: translate 0.2s ease;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 0.55em 1.1em;
+  border-radius: 999px;
+}
+
+.skip-link:focus-visible {
+  translate: 0 0;
+}
+
+/* The notebook's red margin: a double line running the full page */
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: var(--margin-x);
+  width: 7px;
+  background: linear-gradient(
+    to right,
+    var(--margin-red) 0,
+    var(--margin-red) 1.5px,
+    transparent 1.5px,
+    transparent 5.5px,
+    var(--margin-red) 5.5px,
+    var(--margin-red) 7px
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ---------- Shared chapter scaffolding ---------- */
+
+.chapter {
+  position: relative;
+  padding: calc(var(--rule-gap) * 1.5) var(--content-right)
+    calc(var(--rule-gap) * 1.5) var(--content-left);
+  max-width: calc(var(--max-w) + var(--content-left) + var(--content-right));
+}
+
+.chapter-eyebrow {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--margin-red);
+  rotate: -0.6deg;
+  transform-origin: left bottom;
+}
+
+.chapter-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  line-height: 1.22;
+  letter-spacing: 0.004em;
+  text-wrap: balance;
+}
+
+.chapter-lede {
+  margin: 0.7rem 0 0;
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead-sentinel {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.masthead.is-stuck {
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  border-bottom-color: var(--hairline);
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  padding: 0.85rem var(--content-right) 0.85rem var(--content-left);
+  max-width: calc(var(--max-w) + var(--content-left) + var(--content-right));
+}
+
+.wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.wordmark-press {
+  color: var(--margin-red);
+}
+
+.masthead-tag {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.masthead-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.m-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 0.15em;
+  background-image: linear-gradient(var(--margin-red), var(--margin-red));
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: left bottom;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+
+.m-link:hover {
+  background-size: 100% 2px;
+}
+
+.m-link-out {
+  color: var(--ink);
+  background-size: 100% 2px;
+}
+
+.m-link-out:hover {
+  color: var(--margin-red);
+}
+
+/* ---------- Buttons & links ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 0.55em 1.35em;
+  border: 0;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  background: #16213d;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.link-out {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--margin-red);
+  padding-bottom: 0.1em;
+}
+
+.link-out:hover {
+  color: var(--margin-red);
+}
+
+/* ---------- Chips ---------- */
+
+.chip {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 0.16em 0.75em;
+  border: 1.5px solid rgba(30, 43, 79, 0.22);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.chip-class {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--band) 16%, transparent);
+  border-color: color-mix(in srgb, var(--band) 55%, transparent);
+}
+
+.ku-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  border: 1px solid rgba(30, 43, 79, 0.3);
+  border-radius: 4px;
+  padding: 0.08em 0.5em;
+  white-space: nowrap;
+}
+
+/* ---------- Pencil doodles in the margin ---------- */
+
+.doodle {
+  position: absolute;
+  color: var(--pencil);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.doodle-red {
+  color: var(--margin-red);
+  opacity: 0.75;
+}
+
+@media (max-width: 1050px) {
+  .doodle {
+    display: none;
+  }
+}
+
+/* ---------- Footer: the back cover ---------- */
+
+.footer {
+  position: relative;
+  padding: 2.75rem var(--content-right) 3.5rem var(--content-left);
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  font-size: 0.93rem;
+}
+
+.footer p {
+  margin: 0 0 0.45rem;
+}
+
+.footer strong {
+  color: var(--ink);
+}
+
+.footer-belongs {
+  margin: 0 0 1.2rem;
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  color: var(--ink);
+  rotate: -0.5deg;
+  transform-origin: left bottom;
+}
+
+.footer-belongs span {
+  color: var(--margin-red);
+  border-bottom: 1.5px dotted rgba(30, 43, 79, 0.45);
+  padding: 0 0.35rem 0.1rem;
+}
+
+.footer-copy {
+  margin-top: 1.4rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 720px) {
+  .masthead-nav .m-link-anchor {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .masthead-tag {
+    display: none;
+  }
+}
