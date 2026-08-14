@@ -1,5 +1,5 @@
 import { useEffect, useRef, type MouseEvent, type RefObject } from 'react'
-import { amazonUrl, coverSrc, type Book } from '../data/books'
+import { amazonUrl, coverSrc, coverSrcLarge, type Book } from '../data/books'
 
 interface BookDialogProps {
   book: Book | null
@@ -91,10 +91,12 @@ export default function BookDialog({
             <span className="book-cover bd-cover">
               <img
                 className="cover-img"
-                src={coverSrc(shown)}
+                src={coverSrcLarge(shown)}
+                srcSet={`${coverSrc(shown)} 640w, ${coverSrcLarge(shown)} 1280w`}
+                sizes="(max-width: 640px) min(21rem, 92vw), 14.5rem"
                 alt=""
-                width={640}
-                height={905}
+                width={1280}
+                height={1707}
                 onLoad={() => {
                   if (ref.current) ref.current.scrollTop = 0
                 }}

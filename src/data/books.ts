@@ -46,6 +46,10 @@ export const amazonUrl = (book: Book): string =>
 export const coverSrc = (book: Book): string =>
   `${import.meta.env.BASE_URL}covers/${book.asin}.jpg`
 
+/** 1280px cover for the detail sheet — listing/hero keep the 640px file */
+export const coverSrcLarge = (book: Book): string =>
+  `${import.meta.env.BASE_URL}covers/${book.asin}-lg.jpg`
+
 export const GRADE_BANDS: GradeBand[] = [
   {
     id: 'foundations',

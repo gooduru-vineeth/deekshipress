@@ -45,10 +45,14 @@ Full details, credentials layout, and troubleshooting: **docs/DEPLOYMENT.md**.
 
 - All book data: `src/data/books.ts` (typed `BOOKS` array). Amazon links are
   derived from each book's ASIN (`amazon.in/dp/<ASIN>`).
-- Cover images: `public/covers/<ASIN>.jpg`, 640px wide JPEGs.
-- Cover masters (2479×3508) live outside this repo:
-  `/Users/vineeth/Documents/PersonalProjects/contenthq/books/books-master/<slug>/cover-ebook.jpg`.
-  Resize with: `sips --resampleWidth 640 -s format jpeg -s formatOptions 72 <master> --out public/covers/<ASIN>.jpg`
+- Cover images: `public/covers/<ASIN>.jpg` (640px, listing/hero) and
+  `public/covers/<ASIN>-lg.jpg` (1280px, detail dialog).
+- Highest-quality source is the book-page PNG in contenthq, not the KDP jpeg:
+  `/Users/vineeth/Documents/PersonalProjects/contenthq/books/<slug>/images/page_c0_p1.png`
+  (some books use `page_p1.png`; Class 8 has no page PNG — use `books-master/<slug>/cover-ebook.jpg`).
+  Resize with:
+  `sips --resampleWidth 640 -s format jpeg -s formatOptions 72 <src> --out public/covers/<ASIN>.jpg`
+  `sips --resampleWidth 1280 -s format jpeg -s formatOptions 80 <src> --out public/covers/<ASIN>-lg.jpg`
 - Adding a book = one entry in `books.ts` + one cover file. Verify the cover
   visually matches the title before shipping — folder names in books-master
   don't always match published titles (e.g. Class 9 uses the `-v2` folder).

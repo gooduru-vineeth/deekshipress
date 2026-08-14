@@ -93,8 +93,12 @@ body:has(dialog[open]) {
 
 .bd-cover {
   display: block;
-  aspect-ratio: 640 / 905;
+  aspect-ratio: auto;
   box-shadow: 0 18px 30px -14px rgba(30, 43, 79, 0.6);
+}
+
+.bd-cover .cover-img {
+  height: auto;
 }
 
 /* ---------- Content column ---------- */
