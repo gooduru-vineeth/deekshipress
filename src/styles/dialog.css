@@ -18,6 +18,7 @@ body:has(dialog[open]) {
   width: min(56rem, calc(100vw - 2.5rem));
   max-height: calc(100dvh - 3rem);
   overflow: auto;
+  overflow-anchor: none;
   overscroll-behavior: contain;
   box-shadow: 0 30px 60px -20px rgba(16, 24, 46, 0.5);
 }
@@ -218,14 +219,34 @@ body:has(dialog[open]) {
 
   .bd-body {
     grid-template-columns: 1fr;
-    padding: 1.5rem 1.2rem 1.7rem 1.9rem;
+    justify-items: center;
+    padding: 3.1rem 1.25rem calc(1.7rem + env(safe-area-inset-bottom)) 1.25rem;
+  }
+
+  .bd-body::before {
+    display: none;
   }
 
   .bd-cover-col {
-    width: clamp(7.5rem, 36vw, 9.5rem);
+    width: min(21rem, 100%);
+  }
+
+  .bd-cover {
+    width: 100%;
+  }
+
+  .bd-content {
+    width: 100%;
+    max-width: 36rem;
   }
 
   .bd-title {
-    padding-right: 2.8rem;
+    padding-right: 0;
+  }
+
+  .bd-close {
+    top: 0.7rem;
+    right: 0.7rem;
+    z-index: 2;
   }
 }

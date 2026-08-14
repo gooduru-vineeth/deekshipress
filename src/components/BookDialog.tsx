@@ -16,6 +16,7 @@ export default function BookDialog({
   openerRef,
 }: BookDialogProps) {
   const ref = useRef<HTMLDialogElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
 
   // Keep the latest onDismiss without re-binding the close listener.
   const onDismissRef = useRef(onDismiss)
@@ -29,10 +30,16 @@ export default function BookDialog({
 
   // One always-mounted dialog; the `open` prop would make it
   // non-modal and conditional rendering would skip close events.
+  // After open, park focus on the close button (first in the
+  // sheet) so the browser does not scroll the buy link into view.
   useEffect(() => {
     const dialog = ref.current
     if (!dialog) return
     if (book && !dialog.open) dialog.showModal()
+    if (book && dialog.open) {
+      dialog.scrollTop = 0
+      closeRef.current?.focus({ preventScroll: true })
+    }
     if (!book && dialog.open) dialog.close()
   }, [book])
 
@@ -71,6 +78,15 @@ export default function BookDialog({
     >
       {shown && (
         <div className="bd-body">
+          <button
+            ref={closeRef}
+            type="button"
+            className="bd-close"
+            onClick={onDismiss}
+            aria-label="Close book details"
+          >
+            ✕
+          </button>
           <div className="bd-cover-col">
             <span className="book-cover bd-cover">
               <img
@@ -79,6 +95,9 @@ export default function BookDialog({
                 alt=""
                 width={640}
                 height={905}
+                onLoad={() => {
+                  if (ref.current) ref.current.scrollTop = 0
+                }}
               />
             </span>
           </div>
@@ -114,14 +133,6 @@ export default function BookDialog({
               )}
             </div>
           </div>
-          <button
-            type="button"
-            className="bd-close"
-            onClick={onDismiss}
-            aria-label="Close book details"
-          >
-            ✕
-          </button>
         </div>
       )}
     </dialog>

@@ -27,7 +27,7 @@ export default function App() {
       </a>
       <Masthead />
       <main>
-        <Hero />
+        <Hero onOpen={handleOpen} />
         <WhyAI />
         <Ladder />
         <Bookshelf onOpen={handleOpen} />

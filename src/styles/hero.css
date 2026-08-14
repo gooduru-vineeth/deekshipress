@@ -124,31 +124,41 @@
   align-items: flex-end;
 }
 
-.hero-stack img {
-  width: clamp(7.5rem, 12vw, 10.5rem);
-  height: auto;
-  border-radius: 4px 10px 10px 4px;
-  box-shadow: 0 20px 32px -18px rgba(30, 43, 79, 0.65);
+.hero-cover {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
   transform: var(--fan);
   transition: transform 0.3s cubic-bezier(0.3, 0.7, 0.3, 1.2);
 }
 
+.hero-cover img {
+  display: block;
+  width: clamp(7.5rem, 12vw, 10.5rem);
+  height: auto;
+  border-radius: 4px 10px 10px 4px;
+  box-shadow: 0 20px 32px -18px rgba(30, 43, 79, 0.65);
+  pointer-events: none;
+}
+
 /* Books answer to a touch — hover on desktop, press on touch */
-.hero-stack img:hover,
-.hero-stack img:active {
+.hero-cover:hover,
+.hero-cover:active {
   transform: var(--fan) translateY(-10px);
 }
 
-.hero-stack img:nth-child(1) {
+.hero-cover:nth-child(1) {
   --fan: rotate(-7deg) translate(16px, 4px);
 }
 
-.hero-stack img:nth-child(2) {
+.hero-cover:nth-child(2) {
   --fan: rotate(-0.5deg) translateY(-10px);
   z-index: 1;
 }
 
-.hero-stack img:nth-child(3) {
+.hero-cover:nth-child(3) {
   --fan: rotate(6.5deg) translate(-16px, 6px);
   z-index: 2;
 }
@@ -165,7 +175,7 @@
     margin-top: var(--rule-gap);
   }
 
-  .hero-stack img {
+  .hero-cover img {
     width: clamp(6rem, 24vw, 8.5rem);
   }
 }

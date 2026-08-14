@@ -21,14 +21,29 @@ export function useReveal<T extends HTMLElement>() {
       return
     }
 
+    const show = () => {
+      el.classList.add('is-visible')
+    }
+
+    const alreadyInView = () => {
+      const rect = el.getBoundingClientRect()
+      return rect.bottom > 0 && rect.top < window.innerHeight
+    }
+    if (alreadyInView()) {
+      show()
+      return
+    }
+
+    // Pixel rootMargin: percentage margins are flaky on iOS Safari,
+    // and a negative bottom margin can miss tall shelf sections.
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
-          el.classList.add('is-visible')
+          show()
           io.disconnect()
         }
       },
-      { rootMargin: '0px 0px -8% 0px' },
+      { root: null, threshold: 0, rootMargin: '80px 0px' },
     )
     io.observe(el)
     return () => io.disconnect()

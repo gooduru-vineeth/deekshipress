@@ -22,9 +22,9 @@ export default function BookCard({ book, index, onOpen }: BookCardProps) {
           className="cover-img"
           src={coverSrc(book)}
           alt=""
-          loading="lazy"
           width={640}
           height={905}
+          decoding="async"
         />
       </span>
       <span className="book-meta">

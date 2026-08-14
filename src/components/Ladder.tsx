@@ -39,9 +39,9 @@ export default function Ladder() {
                         key={book.asin}
                         src={coverSrc(book)}
                         alt=""
-                        loading="lazy"
                         width={640}
                         height={905}
+                        decoding="async"
                       />
                     ))}
                   </span>

@@ -1,9 +1,13 @@
-import { AMAZON_SEARCH_URL, BOOKS, coverSrc } from '../data/books'
+import { AMAZON_SEARCH_URL, BOOKS, coverSrc, type Book } from '../data/books'
 
-/** One cover per reading stage: picture book, middle school, teens */
+/** One cover per reading stage: Class 1, middle school, teens */
 const STACK_ASINS = ['B0H8TDN9DJ', 'B0H9J18QYB', 'B0H9JL2JQ3']
 
-export default function Hero() {
+export default function Hero({
+  onOpen,
+}: {
+  onOpen: (book: Book, opener: HTMLElement) => void
+}) {
   const stack = STACK_ASINS.map((asin) =>
     BOOKS.find((book) => book.asin === asin),
   ).filter((book) => book !== undefined)
@@ -30,9 +34,9 @@ export default function Hero() {
         </div>
         <h1 className="hero-title">AI, explained at every age.</h1>
         <p className="hero-lede">
-          From a Class 1 picture book to a field guide for teens, Deekshi
-          Press books show Indian kids how the smart machines around them
-          really work — one class at a time.
+          From a Class 1 AI book to a field guide for teens, Deekshi Press
+          books show Indian kids how the smart machines around them work —
+          and how AI really works — one class at a time.
         </p>
         <div className="hero-actions">
           <a className="btn" href="#syllabus">
@@ -48,15 +52,22 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <div className="hero-stack" aria-hidden="true">
+      <div className="hero-stack">
         {stack.map((book) => (
-          <img
+          <button
             key={book.asin}
-            src={coverSrc(book)}
-            alt=""
-            width={640}
-            height={905}
-          />
+            type="button"
+            className="hero-cover"
+            onClick={(event) => onOpen(book, event.currentTarget)}
+            aria-label={`Open ${book.displayTitle}`}
+          >
+            <img
+              src={coverSrc(book)}
+              alt=""
+              width={640}
+              height={905}
+            />
+          </button>
         ))}
       </div>
       </div>

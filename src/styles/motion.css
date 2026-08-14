@@ -95,45 +95,52 @@
   animation: seq-rise 0.45s ease-out 0.66s backwards;
 }
 
-.hero-stack img:nth-child(1) {
+.hero-cover:nth-child(1) {
   animation: seq-fan 0.55s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.52s backwards;
 }
 
-.hero-stack img:nth-child(2) {
+.hero-cover:nth-child(2) {
   animation: seq-fan 0.55s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.6s backwards;
 }
 
-.hero-stack img:nth-child(3) {
+.hero-cover:nth-child(3) {
   animation: seq-fan 0.55s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.68s backwards;
 }
 
 /* ---------- Scroll reveals ---------- */
 
-/* useReveal adds .is-visible on first intersection; it adds it
-   immediately when IntersectionObserver is unavailable or
-   reduced motion is on. */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+/* useReveal adds .is-visible on first intersection. Hidden
+   resting state is desktop-only so a missed observer can never
+   leave a whole chapter blank on a phone. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
+/* Cards rise in a small stagger as their shelf reveals.
+   Resting state is VISIBLE on touch devices — iOS Safari will
+   not lazy-load (or will never paint) images that start at
+   opacity: 0, so covers would stay blank after the reveal. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .shelf-section .book-card {
+    opacity: 0;
+    translate: 0 12px;
+    transition: opacity 0.45s ease-out, translate 0.45s ease-out;
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
 
-/* Cards rise in a small stagger as their shelf reveals */
-.shelf-section .book-card {
-  opacity: 0;
-  translate: 0 12px;
-  transition: opacity 0.45s ease-out, translate 0.45s ease-out;
-  transition-delay: calc(var(--i, 0) * 70ms);
-}
-
-.shelf-section.is-visible .book-card {
-  opacity: 1;
-  translate: 0 0;
+  .shelf-section.is-visible .book-card {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 /* The teacher's tick draws itself */
@@ -220,14 +227,14 @@
   .btn:hover,
   .book-card:hover .book-cover,
   .book-card:active .book-cover,
-  .hero-stack img:hover,
-  .hero-stack img:active,
+  .hero-cover:hover,
+  .hero-cover:active,
   .rung-link:hover .rung-covers img,
   .rung-link:active .rung-covers img {
     transform: none;
   }
 
-  .hero-stack img {
+  .hero-cover {
     transform: var(--fan) !important;
   }
 
