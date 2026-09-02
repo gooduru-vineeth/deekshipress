@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from 'react'
 import { BOOKS, type Book } from '../data/books'
+import { track } from '../analytics'
 
 /**
  * The open book lives in the URL hash (#book-<ASIN>), so book
@@ -16,16 +17,45 @@ const subscribe = (onChange: () => void) => {
 
 const getHash = () => window.location.hash
 
+let lastAsin: string | null = null
+let openerSource: 'hero' | 'card' | null = null
+
 export function useHashBook(): Book | null {
   const hash = useSyncExternalStore(subscribe, getHash)
-  if (!hash.startsWith(HASH_PREFIX)) return null
-  const asin = hash.slice(HASH_PREFIX.length)
-  return BOOKS.find((book) => book.asin === asin) ?? null
+  const book = hash.startsWith(HASH_PREFIX)
+    ? (BOOKS.find((item) => item.asin === hash.slice(HASH_PREFIX.length)) ?? null)
+    : null
+
+  const nextAsin = book?.asin ?? null
+  if (nextAsin !== lastAsin) {
+    if (book) {
+      const source =
+        lastAsin === null && !openerSource ? 'hash' : openerSource ?? 'card'
+      track('Opened Book', {
+        asin: book.asin,
+        book: book.displayTitle,
+        band: book.band,
+        class_label: book.classLabel,
+        source,
+      })
+      openerSource = null
+    } else if (lastAsin) {
+      const previous = BOOKS.find((item) => item.asin === lastAsin)
+      track('Closed Book', {
+        asin: lastAsin,
+        book: previous?.displayTitle,
+      })
+    }
+    lastAsin = nextAsin
+  }
+
+  return book
 }
 
 /** Hash assignment pushes one history entry and fires hashchange —
  *  so the browser's back button also closes the dialog. */
-export function openBook(book: Book) {
+export function openBook(book: Book, source: 'hero' | 'card' = 'card') {
+  openerSource = source
   window.location.hash = `book-${book.asin}`
 }
 

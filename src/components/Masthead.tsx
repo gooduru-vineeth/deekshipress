@@ -46,6 +46,8 @@ export default function Masthead() {
               href={AMAZON_SEARCH_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-amp-track-destination="store"
+              data-amp-track-source="masthead"
             >
               Amazon.in ↗
             </a>

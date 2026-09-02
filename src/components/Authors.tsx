@@ -12,7 +12,7 @@ export default function Authors() {
       <header className="chapter-head">
         <p className="chapter-eyebrow">Ch. 4 · Written by</p>
         <h2 className="chapter-title" id="authors-title">
-          Two people, eleven books
+          Two people, thirteen books
         </h2>
         <p className="chapter-lede">
           Deekshi Press is Gooduru Vineeth and Deekshitha S, writing AI books

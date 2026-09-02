@@ -120,6 +120,10 @@ export default function BookDialog({
                 href={amazonUrl(shown)}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-amp-track-book={shown.displayTitle}
+                data-amp-track-asin={shown.asin}
+                data-amp-track-destination="product"
+                data-amp-track-source="dialog"
               >
                 Buy on Amazon.in ↗
               </a>

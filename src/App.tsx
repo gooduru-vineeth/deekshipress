@@ -17,7 +17,8 @@ export default function App() {
 
   const handleOpen = (nextBook: Book, opener: HTMLElement) => {
     openerRef.current = opener
-    openBook(nextBook)
+    const source = opener.dataset.ampTrackSource === 'hero' ? 'hero' : 'card'
+    openBook(nextBook, source)
   }
 
   return (

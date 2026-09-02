@@ -122,7 +122,7 @@ export const BOOKS: Book[] = [
     classLabel: 'Class 2',
     ages: '7–9',
     priceInr: 289,
-    kindleUnlimited: false,
+    kindleUnlimited: true,
     asin: 'B0H9GZFD52',
     band: 'foundations',
   },
@@ -229,6 +229,48 @@ export const BOOKS: Book[] = [
   },
   {
     title:
+      'AI in My Pocket: How AI Really Works in 2026 — A Class 7 Guide for Curious Indian Kids',
+    displayTitle: 'AI in My Pocket',
+    subtitle: 'How AI really works in 2026 — a Class 7 guide for curious Indian kids',
+    hook: 'What’s really going on inside the AI in your pocket.',
+    blurb:
+      'An illustrated Class 7 guide for kids who already live with AI on their phones — and want to know what’s under the hood. Kitchen-analogy training loops, why language models sound smart and still make mistakes, and how to use AI like a power tool, not a magic genie. India-rooted examples, written for 2026 classrooms.',
+    inside: [
+      'AI vs ordinary software, with Indian examples',
+      'How data, training, and prediction actually work',
+      'Why language models sound smart — and still fail',
+      'Using AI like a power tool, not a magic genie',
+    ],
+    classLabel: 'Class 7',
+    ages: '10+',
+    priceInr: 149,
+    kindleUnlimited: true,
+    asin: 'B0HHJY4VHV',
+    band: 'middle',
+  },
+  {
+    title:
+      'AI, Unpacked: How Smart Machines Think, Learn, and Live in Your Pocket — A Class 8 AI Field Guide',
+    displayTitle: 'AI, Unpacked',
+    subtitle:
+      'How smart machines think, learn, and live in your pocket — a Class 8 field guide',
+    hook: 'How smart machines think, learn, and live in your pocket.',
+    blurb:
+      'How does a machine learn? What is it actually doing when it “thinks”? This Class 8 field guide unpacks the machinery behind the smartness — how machines learn from examples, and how they ended up living in your pocket. For readers who want the how, not just the wow.',
+    inside: [
+      'How machines learn from examples',
+      'What “thinking” means for a machine',
+      'The AI living in your pocket, unpacked',
+    ],
+    classLabel: 'Class 8',
+    ages: '11+',
+    priceInr: 99,
+    kindleUnlimited: true,
+    asin: 'B0H9J6M8VV',
+    band: 'middle',
+  },
+  {
+    title:
       'AI for Curious Minds: How Artificial Intelligence Really Works, Where It Goes Wrong, and How to Use It Well — Classes 6–8',
     displayTitle: 'AI for Curious Minds',
     subtitle:
@@ -251,27 +293,6 @@ export const BOOKS: Book[] = [
   },
   {
     title:
-      'AI, Unpacked: How Smart Machines Think, Learn, and Live in Your Pocket — A Class 8 AI Field Guide',
-    displayTitle: 'AI, Unpacked',
-    subtitle:
-      'How smart machines think, learn, and live in your pocket — a Class 8 field guide',
-    hook: 'How smart machines think, learn, and live in your pocket.',
-    blurb:
-      'How does a machine learn? What is it actually doing when it “thinks”? This Class 8 field guide unpacks the machinery behind the smartness — how machines learn from examples, and how they ended up living in your pocket. For readers who want the how, not just the wow.',
-    inside: [
-      'How machines learn from examples',
-      'What “thinking” means for a machine',
-      'The AI living in your pocket, unpacked',
-    ],
-    classLabel: 'Class 8',
-    ages: '11+',
-    priceInr: 199,
-    kindleUnlimited: true,
-    asin: 'B0H9J6M8VV',
-    band: 'middle',
-  },
-  {
-    title:
       'The Class 9 AI Field Guide: India Edition — Build, Question, and Live with AI the CBSE 417 Way',
     displayTitle: 'The Class 9 AI Field Guide',
     subtitle: 'India Edition — build, question, and live with AI the CBSE 417 way',
@@ -289,6 +310,28 @@ export const BOOKS: Book[] = [
     priceInr: 199,
     kindleUnlimited: true,
     asin: 'B0H9B29PDT',
+    band: 'seniors',
+  },
+  {
+    title:
+      'AI for Future Builders: How AI Is Built, Questioned, and Steered — For Indian Classes 9–10',
+    displayTitle: 'AI for Future Builders',
+    subtitle:
+      'How AI is built, questioned, and steered — Classes 9–10 in one book',
+    hook: 'Under the hood: how AI is built, questioned, and steered.',
+    blurb:
+      'AI is built, not conjured. This Classes 9–10 book goes under the hood — the project cycle, data, neural networks, transformers, a first 30 lines of Python — then shows how to question it, build with it, and help steer it. A CBSE 417 companion, not a board textbook. Book 3 of the AI for All trilogy.',
+    inside: [
+      'From Turing-era ideas to transformer models',
+      'The AI Project Cycle on real problems',
+      'Neural networks, transformers, and a first 30 lines of Python',
+      'Bias, safety, and the planetary cost of AI',
+    ],
+    classLabel: 'Classes 9–10',
+    ages: '12+',
+    priceInr: 199,
+    kindleUnlimited: true,
+    asin: 'B0HHK1Y6T5',
     band: 'seniors',
   },
   {

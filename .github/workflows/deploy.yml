@@ -24,6 +24,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          VITE_AMPLITUDE_API_KEY: ${{ secrets.VITE_AMPLITUDE_API_KEY }}
 
       - name: Probe FTP root listing
         env:
@@ -57,6 +59,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          VITE_AMPLITUDE_API_KEY: ${{ secrets.VITE_AMPLITUDE_API_KEY }}
 
       - name: Deploy over FTPS (FTP home is the site's public_html)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

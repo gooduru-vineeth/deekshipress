@@ -11,7 +11,7 @@ export default function Footer() {
         Press.
       </p>
       <p>
-        All books are Kindle editions on Amazon.in — most are free to read
+        All books are Kindle editions on Amazon.in — all 13 are free to read
         with Kindle Unlimited.
       </p>
       <p className="footer-copy">© 2026 Deekshi Press</p>

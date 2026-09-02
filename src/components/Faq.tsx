@@ -12,15 +12,15 @@ const FAQS = [
   },
   {
     q: 'Do the books follow the school syllabus?',
-    a: 'They’re written to sit beside schoolwork, in Indian classroom language. The Class 6 field guide is CBSE-friendly, and the Class 9 guide follows the CBSE Artificial Intelligence (417) skill subject.',
+    a: 'They’re written to sit beside schoolwork, in Indian classroom language. The Class 6–8 field guides are CBSE-friendly, and the Class 9 and Classes 9–10 books follow the CBSE Artificial Intelligence (417) skill subject.',
   },
   {
     q: 'Which book should we buy first?',
-    a: 'Match your child’s class — every book names its class right on the cover. If they’re between stages, or you want one book for siblings to share, the Classes 3–5 and Classes 6–8 guides each cover a whole stage.',
+    a: 'Match your child’s class — every book names its class right on the cover. If they’re between stages, or you want one book for siblings to share, the Classes 3–5, 6–8, and 9–10 guides each cover a whole stage.',
   },
   {
     q: 'What is Kindle Unlimited — are these books included?',
-    a: '10 of the 11 books are in Kindle Unlimited, Amazon’s reading subscription, so subscribers read them at no extra cost. Without it, every book is a regular Kindle purchase (₹149–289).',
+    a: 'All 13 books are in Kindle Unlimited, Amazon’s reading subscription, so subscribers read them at no extra cost. Without it, every book is a regular Kindle purchase (₹99–289).',
   },
   {
     q: 'Are print editions available?',

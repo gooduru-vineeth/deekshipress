@@ -51,7 +51,7 @@ export default function Bookshelf({ onOpen }: { onOpen: OpenBook }) {
     <div className="bookshelf chapter" id="bookshelf">
       <header ref={headRef} className="chapter-head reveal">
         <p className="chapter-eyebrow">Ch. 3 · The bookshelf</p>
-        <h2 className="chapter-title">Eleven books, class by class</h2>
+        <h2 className="chapter-title">Thirteen books, class by class</h2>
         <p className="chapter-lede">
           Pick your kid’s class and start there — every book stands alone;
           together they make one syllabus.

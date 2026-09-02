@@ -15,6 +15,9 @@ export default function BookCard({ book, index, onOpen }: BookCardProps) {
       type="button"
       className="book-card"
       data-band={book.band}
+      data-amp-track-book={book.displayTitle}
+      data-amp-track-asin={book.asin}
+      data-amp-track-source="card"
       style={{ '--i': index } as CSSProperties}
       onClick={(event) => onOpen(book, event.currentTarget)}
     >

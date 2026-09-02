@@ -1,8 +1,8 @@
 import { AMAZON_SEARCH_URL, BOOKS, type Book } from '../data/books'
 import CoverImage from './CoverImage'
 
-/** One cover per reading stage: Class 1, middle school, teens */
-const STACK_ASINS = ['B0H8TDN9DJ', 'B0H9J18QYB', 'B0H9JL2JQ3']
+/** The three band books: Classes 3–5, 6–8, 9–10 */
+const STACK_ASINS = ['B0H9JKZFXT', 'B0H9J7XQNN', 'B0HHK1Y6T5']
 
 export default function Hero({
   onOpen,
@@ -32,6 +32,8 @@ export default function Hero({
             href={AMAZON_SEARCH_URL}
             target="_blank"
             rel="noopener noreferrer"
+            data-amp-track-destination="store"
+            data-amp-track-source="hero"
           >
             Amazon.in store ↗
           </a>
@@ -43,6 +45,9 @@ export default function Hero({
             key={book.asin}
             type="button"
             className="hero-cover"
+            data-amp-track-book={book.displayTitle}
+            data-amp-track-asin={book.asin}
+            data-amp-track-source="hero"
             onClick={(event) => onOpen(book, event.currentTarget)}
             aria-label={`Open ${book.displayTitle}`}
           >
