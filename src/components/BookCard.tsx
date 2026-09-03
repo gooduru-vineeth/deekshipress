@@ -34,7 +34,7 @@ export default function BookCard({ book, index, onOpen }: BookCardProps) {
         <span className="book-buy">
           <span className="book-price">₹{book.priceInr}</span>
           {book.kindleUnlimited && (
-            <span className="ku-badge">Kindle Unlimited</span>
+            <span className="ku-badge">Free on Kindle Unlimited</span>
           )}
           <span className="book-cta">Details →</span>
         </span>

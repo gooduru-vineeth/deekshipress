@@ -114,6 +114,15 @@ body {
   max-width: 58ch;
 }
 
+.chapter-ku {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  color: var(--margin-red);
+  rotate: -1.5deg;
+  transform-origin: left bottom;
+}
+
 /* ---------- Masthead ---------- */
 
 .masthead-sentinel {

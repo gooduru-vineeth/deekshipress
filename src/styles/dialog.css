@@ -182,9 +182,20 @@ body:has(dialog[open]) {
   margin-top: 1.35rem;
 }
 
-.bd-ku-note {
-  color: var(--ink-soft);
-  font-size: 0.9rem;
+.bd-ku-free {
+  display: inline-block;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--margin-red);
+  text-decoration: none;
+  rotate: -2deg;
+  transform-origin: left bottom;
+}
+
+.bd-ku-free:hover {
+  color: var(--ink);
+  text-decoration: underline;
 }
 
 .bd-close {

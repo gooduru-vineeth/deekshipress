@@ -38,6 +38,18 @@ export default function Hero({
             Amazon.in store ↗
           </a>
         </div>
+        <p className="hero-ku">
+          <a
+            className="link-out"
+            href={AMAZON_SEARCH_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-amp-track-destination="store"
+            data-amp-track-source="hero"
+          >
+            Every book free to read on Kindle Unlimited ↗
+          </a>
+        </p>
       </div>
       <div className="hero-stack">
         {stack.map((book) => (

@@ -56,6 +56,9 @@ export default function Bookshelf({ onOpen }: { onOpen: OpenBook }) {
           Pick your kid’s class and start there — every book stands alone;
           together they make one syllabus.
         </p>
+        <p className="chapter-ku">
+          All 13 books — free to read with Kindle Unlimited.
+        </p>
       </header>
       {GRADE_BANDS.map((band) => {
         const books = BOOKS.filter((book) => book.band === band.id)

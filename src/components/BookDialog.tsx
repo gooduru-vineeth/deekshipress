@@ -1,5 +1,5 @@
 import { useEffect, useRef, type MouseEvent, type RefObject } from 'react'
-import { amazonUrl, type Book } from '../data/books'
+import { AMAZON_SEARCH_URL, amazonUrl, type Book } from '../data/books'
 import CoverImage from './CoverImage'
 
 interface BookDialogProps {
@@ -129,9 +129,16 @@ export default function BookDialog({
               </a>
               <span className="bd-price">₹{shown.priceInr}</span>
               {shown.kindleUnlimited && (
-                <span className="bd-ku-note">
-                  or free with Kindle Unlimited
-                </span>
+                <a
+                  className="bd-ku-free"
+                  href={AMAZON_SEARCH_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-amp-track-destination="store"
+                  data-amp-track-source="dialog"
+                >
+                  Free to read on Kindle Unlimited ↗
+                </a>
               )}
             </div>
           </div>
