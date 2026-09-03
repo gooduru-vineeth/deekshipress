@@ -1,48 +1,15 @@
-import { BOOKS, GRADE_BANDS, type Book, type GradeBand } from '../data/books'
+import {
+  GRADE_BANDS,
+  STAGE_GROUP,
+  classBooksIn,
+  stageBooks,
+  type Book,
+} from '../data/books'
 import { useReveal } from '../hooks/useReveal'
-import BookCard from './BookCard'
+import ShelfBand from './ShelfBand'
 
 interface OpenBook {
   (book: Book, opener: HTMLElement): void
-}
-
-function ShelfBand({
-  band,
-  books,
-  onOpen,
-}: {
-  band: GradeBand
-  books: Book[]
-  onOpen: OpenBook
-}) {
-  const ref = useReveal<HTMLElement>()
-  return (
-    <section
-      ref={ref}
-      id={`shelf-${band.id}`}
-      className="shelf-section"
-      data-band={band.id}
-      aria-label={`${band.classes} — ${band.title}`}
-    >
-      <span className="shelf-tab">{band.classes}</span>
-      <div className="shelf-body">
-        <header className="shelf-head">
-          <h3 className="shelf-title">{band.title}</h3>
-          <p className="shelf-blurb">{band.blurb}</p>
-        </header>
-        <div className="shelf-grid">
-          {books.map((book, index) => (
-            <BookCard
-              key={book.asin}
-              book={book}
-              index={index}
-              onOpen={onOpen}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
 }
 
 export default function Bookshelf({ onOpen }: { onOpen: OpenBook }) {
@@ -51,17 +18,23 @@ export default function Bookshelf({ onOpen }: { onOpen: OpenBook }) {
     <div className="bookshelf chapter" id="bookshelf">
       <header ref={headRef} className="chapter-head reveal">
         <p className="chapter-eyebrow">Ch. 3 · The bookshelf</p>
-        <h2 className="chapter-title">Thirteen books, class by class</h2>
+        <h2 className="chapter-title">Thirteen books, two ways in</h2>
         <p className="chapter-lede">
-          Pick your kid’s class and start there — every book stands alone;
-          together they make one syllabus.
+          Start with one book for a whole stage — or pick your kid’s class.
+          Every book stands alone; together they make one syllabus.
         </p>
         <p className="chapter-ku">
           All 13 books — free to read with Kindle Unlimited.
         </p>
       </header>
+      <ShelfBand
+        band={STAGE_GROUP}
+        books={stageBooks()}
+        onOpen={onOpen}
+        id="shelf-stages"
+      />
       {GRADE_BANDS.map((band) => {
-        const books = BOOKS.filter((book) => book.band === band.id)
+        const books = classBooksIn(band.id)
         if (books.length === 0) return null
         return (
           <ShelfBand

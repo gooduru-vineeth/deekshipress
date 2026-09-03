@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Ladder from './components/Ladder'
 import Masthead from './components/Masthead'
+import ShortPath from './components/ShortPath'
 import WhyAI from './components/WhyAI'
 import { dismissBook, openBook, useHashBook } from './hooks/useHashBook'
 import type { Book } from './data/books'
@@ -30,6 +31,7 @@ export default function App() {
       <main>
         <Hero onOpen={handleOpen} />
         <WhyAI />
+        <ShortPath onOpen={handleOpen} />
         <Ladder />
         <Bookshelf onOpen={handleOpen} />
         <Authors />

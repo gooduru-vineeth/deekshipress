@@ -1,4 +1,4 @@
-import { BOOKS, GRADE_BANDS, coverSrc } from '../data/books'
+import { GRADE_BANDS, classBooksIn, coverSrc } from '../data/books'
 import { useReveal } from '../hooks/useReveal'
 import { RobotDoodle } from './doodles'
 
@@ -24,7 +24,7 @@ export default function Ladder() {
       </header>
       <ol className="ladder-list">
         {GRADE_BANDS.map((band) => {
-          const books = BOOKS.filter((book) => book.band === band.id)
+          const books = classBooksIn(band.id)
           return (
             <li key={band.id} className="rung" data-band={band.id}>
               <span className="rung-dot" aria-hidden="true" />

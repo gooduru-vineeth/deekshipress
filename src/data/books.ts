@@ -1,5 +1,7 @@
 export type BandId = 'foundations' | 'explorers' | 'middle' | 'seniors'
 
+export type BookKind = 'class' | 'stage'
+
 export interface GradeBand {
   id: BandId
   /** Red margin annotation, e.g. "Classes 1–2" */
@@ -8,6 +10,14 @@ export interface GradeBand {
   blurb: string
   /** One-line rung description for the syllabus ladder */
   ladderLine: string
+}
+
+/** Shared shape for a bookshelf section — grade bands plus the stage group. */
+export interface ShelfGroup {
+  id: BandId | 'stages'
+  classes: string
+  title: string
+  blurb: string
 }
 
 export interface Book {
@@ -33,6 +43,8 @@ export interface Book {
   kindleUnlimited: boolean
   asin: string
   band: BandId
+  /** `stage` = one volume for a whole stretch; shown in the hero and first shelf. */
+  kind: BookKind
 }
 
 export const AUTHORS = 'Gooduru Vineeth & Deekshitha S'
@@ -84,6 +96,14 @@ export const GRADE_BANDS: GradeBand[] = [
   },
 ]
 
+export const STAGE_GROUP: ShelfGroup = {
+  id: 'stages',
+  classes: 'One book, whole stage',
+  title: 'The short path',
+  blurb:
+    'Siblings, a school library, or a kid between stages — Classes 3–5, 6–8, or 9–10 in a single volume.',
+}
+
 export const BOOKS: Book[] = [
   {
     title:
@@ -105,6 +125,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H8TDN9DJ',
     band: 'foundations',
+    kind: 'class',
   },
   {
     title:
@@ -125,6 +146,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9GZFD52',
     band: 'foundations',
+    kind: 'class',
   },
   {
     title:
@@ -145,6 +167,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9HGRJVM',
     band: 'explorers',
+    kind: 'class',
   },
   {
     title:
@@ -165,6 +188,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9HBM7T3',
     band: 'explorers',
+    kind: 'class',
   },
   {
     title: 'AI and You: A Class 5 Field Guide to Your Smartest New Friend',
@@ -184,6 +208,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9BYVKBH',
     band: 'explorers',
+    kind: 'class',
   },
   {
     title:
@@ -205,6 +230,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9JKZFXT',
     band: 'explorers',
+    kind: 'stage',
   },
   {
     title:
@@ -226,6 +252,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9J18QYB',
     band: 'middle',
+    kind: 'class',
   },
   {
     title:
@@ -247,6 +274,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0HHJY4VHV',
     band: 'middle',
+    kind: 'class',
   },
   {
     title:
@@ -264,10 +292,11 @@ export const BOOKS: Book[] = [
     ],
     classLabel: 'Class 8',
     ages: '11+',
-    priceInr: 99,
+    priceInr: 149,
     kindleUnlimited: true,
     asin: 'B0H9J6M8VV',
     band: 'middle',
+    kind: 'class',
   },
   {
     title:
@@ -290,6 +319,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9J7XQNN',
     band: 'middle',
+    kind: 'stage',
   },
   {
     title:
@@ -311,6 +341,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9B29PDT',
     band: 'seniors',
+    kind: 'class',
   },
   {
     title:
@@ -333,6 +364,7 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0HHK1Y6T5',
     band: 'seniors',
+    kind: 'stage',
   },
   {
     title:
@@ -355,5 +387,12 @@ export const BOOKS: Book[] = [
     kindleUnlimited: true,
     asin: 'B0H9JL2JQ3',
     band: 'seniors',
+    kind: 'class',
   },
 ]
+
+export const stageBooks = (): Book[] =>
+  BOOKS.filter((book) => book.kind === 'stage')
+
+export const classBooksIn = (band: BandId): Book[] =>
+  BOOKS.filter((book) => book.band === band && book.kind === 'class')

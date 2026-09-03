@@ -1,17 +1,12 @@
-import { AMAZON_SEARCH_URL, BOOKS, type Book } from '../data/books'
+import { AMAZON_SEARCH_URL, stageBooks, type Book } from '../data/books'
 import CoverImage from './CoverImage'
-
-/** The three band books: Classes 3–5, 6–8, 9–10 */
-const STACK_ASINS = ['B0H9JKZFXT', 'B0H9J7XQNN', 'B0HHK1Y6T5']
 
 export default function Hero({
   onOpen,
 }: {
   onOpen: (book: Book, opener: HTMLElement) => void
 }) {
-  const stack = STACK_ASINS.map((asin) =>
-    BOOKS.find((book) => book.asin === asin),
-  ).filter((book) => book !== undefined)
+  const stack = stageBooks()
 
   return (
     <section className="hero">

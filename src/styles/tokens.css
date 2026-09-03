@@ -66,6 +66,10 @@
   --band: var(--band-seniors);
   --band-contrast: #ffffff;
 }
+[data-band='stages'] {
+  --band: #9a4f2e;
+  --band-contrast: #ffffff;
+}
 
 @media (max-width: 640px) {
   :root {
