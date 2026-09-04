@@ -158,16 +158,16 @@ body {
   max-width: calc(var(--max-w) + var(--content-left) + var(--content-right));
 }
 
-.wordmark {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.5rem;
-  line-height: 1.2;
+.masthead-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
-.wordmark-press {
-  color: var(--margin-red);
+.masthead-logo {
+  display: block;
+  height: 2.75rem;
+  width: auto;
 }
 
 .masthead-tag {

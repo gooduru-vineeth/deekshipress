@@ -23,10 +23,14 @@ export default function Masthead() {
       <div className="masthead-sentinel" ref={sentinelRef} aria-hidden="true" />
       <header className="masthead" ref={headerRef}>
         <div className="masthead-inner">
-          <div>
-            <p className="wordmark">
-              Deekshi <span className="wordmark-press">Press</span>
-            </p>
+          <div className="masthead-brand">
+            <img
+              className="masthead-logo"
+              src="/logo.png"
+              alt="Deekshi Press"
+              width={664}
+              height={757}
+            />
             <p className="masthead-tag">
               AI &amp; STEM books for curious Indian kids
             </p>
