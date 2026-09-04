@@ -27,13 +27,18 @@ export default function Masthead() {
             <img
               className="masthead-logo"
               src="/logo.png"
-              alt="Deekshi Press"
-              width={225}
-              height={256}
+              alt=""
+              width={281}
+              height={320}
             />
-            <p className="masthead-tag">
-              AI &amp; STEM books for curious Indian kids
-            </p>
+            <div className="masthead-lockup">
+              <p className="wordmark">
+                Deekshi <span className="wordmark-press">Press</span>
+              </p>
+              <p className="masthead-tag">
+                AI &amp; STEM books for curious Indian kids
+              </p>
+            </div>
           </div>
           <nav className="masthead-nav" aria-label="Sections">
             <a className="m-link m-link-anchor" href="#syllabus">
