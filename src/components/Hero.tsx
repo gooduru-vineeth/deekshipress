@@ -42,7 +42,7 @@ export default function Hero({
             data-amp-track-destination="store"
             data-amp-track-source="hero"
           >
-            Every book free to read on Kindle Unlimited ↗
+            Every book free to read on Kindle Unlimited{'\u00a0'}↗
           </a>
         </p>
       </div>

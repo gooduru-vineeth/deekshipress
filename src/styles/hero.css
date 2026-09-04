@@ -72,6 +72,16 @@
   min-height: var(--rule-gap);
 }
 
+.hero-ku .link-out {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .hero-ku .link-out {
+    font-size: clamp(0.78rem, 3.55vw, 0.98rem);
+  }
+}
+
 /* ---------- Three covers, fanned like books on a desk ---------- */
 
 .hero-stack {

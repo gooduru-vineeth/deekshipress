@@ -82,12 +82,6 @@
   rotate: -10deg;
 }
 
-/* ---------- The short path, above the class-by-class ladder ---------- */
-
-.short-path {
-  padding-bottom: calc(var(--rule-gap) * 0.75);
-}
-
 /* ---------- Ch. 2 — The syllabus ladder ---------- */
 
 .ladder-list {
@@ -207,25 +201,6 @@
   font-weight: 700;
   font-size: 0.88rem;
   color: color-mix(in srgb, var(--band) 78%, var(--ink));
-}
-
-.ladder-alt {
-  margin: 1.4rem 0 0;
-  max-width: 52ch;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
-.ladder-alt a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 2px solid color-mix(in srgb, var(--margin-red) 55%, transparent);
-}
-
-.ladder-alt a:hover {
-  color: var(--margin-red);
 }
 
 @media (hover: hover) {
