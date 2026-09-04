@@ -28,8 +28,8 @@ export default function Masthead() {
               className="masthead-logo"
               src="/logo.png"
               alt="Deekshi Press"
-              width={664}
-              height={757}
+              width={225}
+              height={256}
             />
             <p className="masthead-tag">
               AI &amp; STEM books for curious Indian kids
